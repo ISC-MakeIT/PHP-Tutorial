@@ -1,0 +1,34 @@
+.header {
+  height: 67px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #263238;
+  padding: 0 20px;
+}
+.header svg {
+  fill: white;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  font-size: 1.5rem;
+}
+.header-right a {
+  text-decoration: none;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+}
+.search-box img {
+  transform: translate(40px, 5px);
+}
+.search-box input {
+  height: 40px;
+  width: 365px;
+  border-radius: 10px;
+  padding-left: 40px;
+}
