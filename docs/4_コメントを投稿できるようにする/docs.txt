@@ -1,0 +1,1 @@
+comment.phpはGETでデータの確認　POSTでデータ追加できる
