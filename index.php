@@ -48,7 +48,7 @@
     <main>
       <div class="comment">
         <img class="avatar" src="./assets/sample.png" height="57" width="57" alt="sample" />
-        <form action="" method="get" class="comment-form">
+        <form action="./comment.php" method="post" class="comment-form">
           <div class="comment-box">
             <label for="comment"> </label>
             <textarea name="comment" id="keyword" required></textarea>
@@ -61,8 +61,9 @@
       <div class="timeline">
         <ul class="timeline-comments">
           <?php
-          $comments = ["こんにちは", "こんばんは", "おはようございます"];
-          for ($i = 0; $i < count($comments); $i++) {
+          $json = file_get_contents('./comments.json');
+          $comments = json_decode($json);
+          for ($i = count($comments) - 1; 0 <= $i; $i--) {
             echo " <li>
             <img class='avatar' src='./assets/sample.png' height='57' width='57' alt='sample' />
             <div class='timeline-comments-right'>
