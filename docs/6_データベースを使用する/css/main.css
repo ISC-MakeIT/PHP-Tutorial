@@ -1,0 +1,78 @@
+main {
+  flex-grow: 1;
+  margin: 20px 150px;
+}
+.comment {
+  padding: 30px;
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+}
+.avatar {
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+.comment-form {
+  margin-left: 20px;
+  width: 100%;
+}
+.comment-box {
+  width: 100%;
+}
+.comment-box textarea {
+  resize: none;
+  height: 90px;
+  width: 100%;
+  background-color: #eceff1;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+.submit-button-wrap {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+.submit-button-wrap button {
+  background-color: #263238;
+  color: white;
+  width: 120px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  border: #263238;
+}
+.timeline {
+  margin-top: 30px;
+  background-color: white;
+  height: auto;
+  border-radius: 10px;
+}
+.timeline-comments {
+  padding: 10px 30px;
+  list-style: none;
+}
+.timeline-comments li {
+  padding: 10px 0;
+  display: flex;
+  width: 100%;
+  border-bottom: #eceff1 solid 2px;
+}
+.timeline-comments li:last-child {
+  padding: 10px 0;
+  display: flex;
+  width: 100%;
+  border: none;
+}
+.timeline-comments-right {
+  margin-left: 20px;
+  width: 100%;
+}
+.timeline-comments-right p {
+  width: 100%;
+  word-break: break-all;
+}
+.timeline-comments-reaction {
+  margin: 10px 0;
+  display: flex;
+  gap: 20px;
+}
