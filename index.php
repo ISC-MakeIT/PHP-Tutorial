@@ -35,7 +35,7 @@
           </a>
         </li>
         <li>
-          <a href="#"><img src="./assets/user.svg" height="40" width="40" />プロフィール</a>
+          <a href="profile.php"><img src="./assets/user.svg" height="40" width="40" />プロフィール</a>
         </li>
         <li>
           <a href="#"><img src="./assets/bell.svg" height="40" width="40" />通知</a>
@@ -62,34 +62,38 @@
         <ul class="timeline-comments">
           <?php
           $pdo = require_once 'connect.php';
-          $sql = 'SELECT body FROM comments';
+          $sql = 'SELECT comments.user_id, comments.body, users.name FROM comments INNER JOIN users ON comments.user_id = users.user_id';
           $statement = $pdo->query($sql);
-          $comments = $statement->fetchAll(PDO::FETCH_COLUMN);
-          for ($i = count($comments) - 1; 0 <= $i; $i--) {
-            echo " <li>
+          $comments = $statement->fetchAll();
+          $reversed = array_reverse($comments);
+          foreach ($reversed as $comment) {
+            if ($comment['user_id'] === 1) {
+              echo " <li>
             <img class='avatar' src='./assets/sample.png' height='57' width='57' alt='sample' />
             <div class='timeline-comments-right'>
-              <strong>name</strong>
-              <p>{$comments[$i]}</p>
+              <strong>{$comment['name']}</strong>
+              <p>{$comment['body']}</p>
               <div class='timeline-comments-reaction'>
                 <img src='./assets/chat-light.svg' height='20' weight='20' alt='reply' />
                 <img src='./assets/heart-light.svg' height='20' weight='20' alt='favorite' />
               </div>
             </div>
           </li>";
-          }
-          ?>
-          <li>
-            <img class="avatar" src="./assets/sample.png" height="57" width="57" alt="sample" />
-            <div class="timeline-comments-right">
-              <strong>name</strong>
-              <p>hogehoge</p>
-              <div class="timeline-comments-reaction">
-                <img src="./assets/chat-light.svg" height="20" weight="20" alt="reply" />
-                <img src="./assets/heart-light.svg" height="20" weight="20" alt="favorite" />
+            } else {
+              echo " <li>
+            <img class='avatar' src='./assets/sample2.png' height='57' width='57' alt='sample' />
+            <div class='timeline-comments-right'>
+              <strong>{$comment['name']}</strong>
+              <p>{$comment['body']}</p>
+              <div class='timeline-comments-reaction'>
+                <img src='./assets/chat-light.svg' height='20' weight='20' alt='reply' />
+                <img src='./assets/heart-light.svg' height='20' weight='20' alt='favorite' />
               </div>
             </div>
-          </li>
+          </li>";
+            }
+          }
+          ?>
         </ul>
       </div>
     </main>
