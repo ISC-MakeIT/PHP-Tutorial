@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS users (
   user_id INT NOT NULL PRIMARY KEY auto_increment,
   name VARCHAR(20) NOT NULL,
   email VARCHAR(20) NOT NULL,
-  password VARCHAR(20) NOT NULL
+  password VARCHAR(20) NOT NULL,
+  aboutme VARCHAR(100) NOT NULL
 );
 CREATE TABLE IF NOT EXISTS comments (
   comment_id INT NOT NULL PRIMARY KEY auto_increment,
@@ -15,16 +16,18 @@ CREATE TABLE IF NOT EXISTS comments (
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 -- サンプルデータ挿入
-INSERT INTO users (name, email, password)
+INSERT INTO users (name, email, password, aboutme)
 VALUES (
     'hoge',
     'hoge@example.com',
-    'hogepassword'
+    'hogepassword',
+    'hogeです。'
   ),
   (
     'fuga',
     'fuga@example.com',
-    'fugapassword'
+    'fugapassword',
+    'fugaです。'
   );
 INSERT INTO comments (user_id, body)
 VALUES (1, 'サンプルコメント１'),
