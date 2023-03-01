@@ -5,6 +5,10 @@
   margin-top: 10px;
   font-size: 1.3rem;
 }
+.form-error {
+  margin-top: 10px;
+  color: red;
+}
 .signin-form {
   margin-top: 30px;
   display: flex;

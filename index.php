@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+  header('location: signin.php');
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="jp">
 
@@ -23,7 +31,7 @@
           <input type="text" name="keyword" id="keyword" required />
         </div>
       </form>
-      <a href="#">ログアウト</a>
+      <a href="signout.php">ログアウト</a>
     </div>
   </div>
   <div class="container">

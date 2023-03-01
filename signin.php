@@ -1,3 +1,25 @@
+<?php
+session_start();
+
+if (isset($_SESSION['user_id'])) {
+  header('location: index.php');
+  exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $pdo = require_once 'connect.php';
+  $sql = "SELECT user_id FROM users WHERE email='{$_POST['email']}' AND password='{$_POST['password']}'";
+  $statement = $pdo->query($sql);
+  $user = $statement->fetch();
+  if (!empty($user)) {
+    unset($_SESSION['errored']);
+    $_SESSION['user_id'] = $user['user_id'];
+    header('location: index.php');
+    exit;
+  }
+  $_SESSION['errored'] = true;
+}
+?>
 <!DOCTYPE html>
 <html lang="jp">
 
@@ -15,6 +37,11 @@
     <div class="card">
       <img class="user-circle" src="./assets/user-circle.svg" width="50" height="50" alt="avatar" />
       <b class="form-name">ログイン</b>
+      <?php
+      if (isset($_SESSION['errored'])) {
+        echo '<p class="form-error">メールアドレスまたはパスワードが間違っています</p>';
+      }
+      ?>
       <form class="signin-form" action="signin.php" method="post">
         <label>メールアドレス</br>
           <input class="email-input" type="email" name="email" required>
