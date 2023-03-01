@@ -8,8 +8,10 @@ if (isset($_SESSION['user_id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $pdo = require_once 'connect.php';
-  $sql = "SELECT user_id FROM users WHERE email='{$_POST['email']}' AND password='{$_POST['password']}'";
-  $statement = $pdo->query($sql);
+  $sql = "SELECT user_id FROM users WHERE email = :email AND password = :password";
+  $statement = $pdo->prepare($sql);
+  $statement->bindParam(':email', $_POST['email']);
+  $statement->bindParam(':password', $_POST['password']);
   $user = $statement->fetch();
   if (!empty($user)) {
     unset($_SESSION['errored']);
