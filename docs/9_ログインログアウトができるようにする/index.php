@@ -5,6 +5,13 @@ if (!isset($_SESSION['user_id'])) {
   header('location: signin.php');
   exit;
 }
+
+$user_id = $_SESSION['user_id'];
+if ($user_id === 1) {
+  $avatar = './assets/sample.png';
+} else {
+  $avatar = './assets/sample2.png';
+}
 ?>
 <!DOCTYPE html>
 <html lang="jp">
@@ -55,7 +62,9 @@ if (!isset($_SESSION['user_id'])) {
     </nav>
     <main>
       <div class="comment">
-        <img class="avatar" src="./assets/sample.png" height="57" width="57" alt="sample" />
+        <?php
+        echo "<img class='avatar' src='{$avatar}' height='57' width='57' alt='sample' />"
+        ?>
         <form action="./comment.php" method="post" class="comment-form">
           <div class="comment-box">
             <label for="comment"> </label>

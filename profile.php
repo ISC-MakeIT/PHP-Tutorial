@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+  header('location: signin.php');
+  exit;
+}
+
+$user_id = $_SESSION['user_id'];
+if ($user_id === 1) {
+  $avatar = './assets/sample.png';
+} else {
+  $avatar = './assets/sample2.png';
+}
+?>
 <!DOCTYPE html>
 <html lang="jp">
 
@@ -24,7 +39,7 @@
           <input type="text" name="keyword" id="keyword" required />
         </div>
       </form>
-      <a href="#">ログアウト</a>
+      <a href="signout.php">ログアウト</a>
     </div>
   </div>
   <div class="container">
@@ -48,13 +63,13 @@
     </nav>
     <main>
       <div class="profile">
-        <img class="profile-avatar" src="./assets/sample.png" height="120" width="120" alt="sample" />
         <?php
         $pdo = require_once 'connect.php';
-        $sql = 'SELECT name, aboutme FROM users WHERE user_id = 1';
+        $sql = "SELECT name, aboutme FROM users WHERE user_id = {$user_id}";
         $statement = $pdo->query($sql);
         $user = $statement->fetch();
-        echo "<b class='profile-name'>{$user['name']}</b>
+        echo "<img class='profile-avatar' src='{$avatar}' height='120' width='120' alt='sample' />
+        <b class='profile-name'>{$user['name']}</b>
         <pre>{$user['aboutme']}
         </pre>
         <div>
@@ -66,13 +81,13 @@
       <div class="timeline">
         <ul class="timeline-comments">
           <?php
-          $sql = 'SELECT users.name, comments.body FROM comments INNER JOIN users ON comments.user_id = users.user_id WHERE comments.user_id = 1';
+          $sql = "SELECT users.name, comments.body FROM comments INNER JOIN users ON comments.user_id = users.user_id WHERE comments.user_id = {$user_id}";
           $statement = $pdo->query($sql);
           $comments = $statement->fetchAll();
           $reversed = array_reverse($comments);
           foreach ($reversed as $comment) {
             echo "<li>
-            <img class='avatar' src='./assets/sample.png' height='57' width='57' alt='sample' />
+            <img class='avatar' src='{$avatar}' height='57' width='57' alt='sample' />
             <div class='timeline-comments-right'>
               <strong>{$comment['name']}</strong>
               <p>{$comment['body']}</p>
