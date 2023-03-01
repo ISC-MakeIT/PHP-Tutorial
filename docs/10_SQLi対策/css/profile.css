@@ -1,0 +1,37 @@
+.profile {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: white;
+  border-radius: 10px;
+}
+.profile-avatar {
+  object-fit: cover;
+  border-radius: 50%;
+}
+.profile-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.profile-followee {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.profile-followee::after {
+  margin-left: 5px;
+  font-size: 1rem;
+  content: "フォロー";
+  font-weight: normal;
+}
+.profile-follower {
+  margin-left: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.profile-follower::after {
+  margin-left: 5px;
+  font-size: 1rem;
+  content: "フォロワー";
+  font-weight: normal;
+}
