@@ -1,0 +1,72 @@
+.user-circle {
+  margin-top: 30px;
+}
+.form-name {
+  margin-top: 10px;
+  font-size: 1.3rem;
+}
+.form-error {
+  margin-top: 10px;
+  color: red;
+}
+.signup-form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.name-input {
+  width: 350px;
+  height: 53px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #eceff1;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.email-input {
+  width: 350px;
+  height: 53px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #eceff1;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.password-input {
+  width: 350px;
+  height: 53px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #eceff1;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.confirm-input {
+  width: 350px;
+  height: 53px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #eceff1;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.submit-btn {
+  margin-top: 20px;
+  width: 350px;
+  height: 53px;
+  background-color: #4f5b62;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+}
+.signin-link {
+  margin: 20px 0 20px 0;
+  font-size: 1.2rem;
+  text-align: right;
+}
