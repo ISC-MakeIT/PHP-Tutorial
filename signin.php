@@ -6,12 +6,22 @@ if (isset($_SESSION['user_id'])) {
   exit;
 }
 
+// このページからのエラーでないものを消す
+if (isset($_SERVER['HTTP_REFERER'])) {
+  $url = $_SERVER['HTTP_REFERER'];
+  $pieces = explode('/', $url);
+  if (end($pieces) !== 'signin.php') {
+    unset($_SESSION['errored']);
+  }
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $pdo = require_once 'connect.php';
   $sql = "SELECT user_id FROM users WHERE email = :email AND password = :password";
   $statement = $pdo->prepare($sql);
-  $statement->bindParam(':email', $_POST['email']);
-  $statement->bindParam(':password', $_POST['password']);
+  $statement->bindValue(':email', $_POST['email']);
+  $statement->bindValue(':password', $_POST['password']);
+  $statement->execute();
   $user = $statement->fetch();
   if (!empty($user)) {
     unset($_SESSION['errored']);
@@ -52,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <input class="password-input" type="password" name="password" required>
         </label>
         <button class="submit-btn" type="submit">ログイン</button>
-        <a class="register-link" href="register.php">新規登録はこちら</a>
+        <a class="signup-link" href="signup.php">新規登録はこちら</a>
       </form>
     </div>
   </div>

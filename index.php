@@ -6,12 +6,8 @@ if (!isset($_SESSION['user_id'])) {
   exit;
 }
 
-$user_id = $_SESSION['user_id'];
-if ($user_id === 1) {
-  $avatar = './assets/sample.png';
-} else {
-  $avatar = './assets/sample2.png';
-}
+$avatar = './assets/sample.png';
+
 ?>
 <!DOCTYPE html>
 <html lang="jp">
@@ -84,8 +80,7 @@ if ($user_id === 1) {
           $comments = $statement->fetchAll();
           $reversed = array_reverse($comments);
           foreach ($reversed as $comment) {
-            if ($comment['user_id'] === 1) {
-              echo " <li>
+            echo " <li>
             <img class='avatar' src='./assets/sample.png' height='57' width='57' alt='sample' />
             <div class='timeline-comments-right'>
               <strong>{$comment['name']}</strong>
@@ -96,19 +91,6 @@ if ($user_id === 1) {
               </div>
             </div>
           </li>";
-            } else {
-              echo " <li>
-            <img class='avatar' src='./assets/sample2.png' height='57' width='57' alt='sample' />
-            <div class='timeline-comments-right'>
-              <strong>{$comment['name']}</strong>
-              <p>{$comment['body']}</p>
-              <div class='timeline-comments-reaction'>
-                <img src='./assets/chat-light.svg' height='20' weight='20' alt='reply' />
-                <img src='./assets/heart-light.svg' height='20' weight='20' alt='favorite' />
-              </div>
-            </div>
-          </li>";
-            }
           }
           ?>
         </ul>
