@@ -10,8 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $pdo = require_once 'connect.php';
   $sql = "SELECT user_id FROM users WHERE email = :email AND password = :password";
   $statement = $pdo->prepare($sql);
-  $statement->bindParam(':email', $_POST['email']);
-  $statement->bindParam(':password', $_POST['password']);
+  $statement->bindValue(':email', $_POST['email']);
+  $statement->bindValue(':password', $_POST['password']);
+  $statement->execute();
   $user = $statement->fetch();
   if (!empty($user)) {
     unset($_SESSION['errored']);
